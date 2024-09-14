@@ -1,4 +1,4 @@
-package com.pedroroig.appskeleton.ui.theme
+package com.pedroroig.appskeleton.features.sample.presentation.theme
 
 import android.app.Activity
 import android.os.Build
