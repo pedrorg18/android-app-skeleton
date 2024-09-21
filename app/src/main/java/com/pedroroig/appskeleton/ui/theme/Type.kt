@@ -1,4 +1,4 @@
-package com.pedroroig.appskeleton.features.sample.presentation.theme
+package com.pedroroig.appskeleton.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
