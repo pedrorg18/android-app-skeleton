@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pedroroig.appskeleton.domain.mockReposSeveral
 import com.pedroroig.appskeleton.domain.model.GithubRepo
 
 @Composable
@@ -90,7 +91,19 @@ fun GithubRepoItem(repo: GithubRepo) {
 
 @Preview(showBackground = true)
 @Composable
-fun GithubScreenPreview() {
+fun GithubScreenPopulatedPreview() {
+    GithubScreen(
+        UiModel(
+            mockReposSeveral(),
+            false,
+            emptyLambda(),
+        ),
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GithubScreenEmptyPreview() {
     GithubScreen(
         UiModel(
             emptyList(),
