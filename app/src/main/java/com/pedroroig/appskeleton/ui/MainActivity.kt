@@ -12,8 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.pedroroig.appskeleton.data.GithubRepository
-import com.pedroroig.appskeleton.data.network.GithubDao
+import com.pedroroig.appskeleton.data.GithubRepositoryImpl
+import com.pedroroig.appskeleton.data.network.GithubNetworkDao
 import com.pedroroig.appskeleton.data.network.RetrofitGithubNetwork
 import com.pedroroig.appskeleton.ui.theme.AppSkeletonTheme
 import kotlinx.coroutines.launch
@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel: GithubViewModel by viewModels {
         GithubViewModel.provideFactory(
-            GithubRepository(
-                GithubDao(
+            GithubRepositoryImpl(
+                GithubNetworkDao(
                     RetrofitGithubNetwork.networkApi
                 )
             ),
