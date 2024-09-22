@@ -1,7 +1,7 @@
 package com.pedroroig.appskeleton.data
 
 import com.pedroroig.appskeleton.domain.model.GithubRepo
-import com.pedroroig.appskeleton.domain.model.repository.GithubRepository
+import com.pedroroig.appskeleton.domain.repository.GithubRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

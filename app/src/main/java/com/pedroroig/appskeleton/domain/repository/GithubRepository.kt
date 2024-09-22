@@ -1,4 +1,4 @@
-package com.pedroroig.appskeleton.domain.model.repository
+package com.pedroroig.appskeleton.domain.repository
 
 import com.pedroroig.appskeleton.domain.model.GithubRepo
 import kotlinx.coroutines.flow.Flow
