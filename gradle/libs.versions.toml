@@ -1,6 +1,5 @@
 [versions]
 agp = "8.6.1"
-hiltAndroidCompiler = "2.44"
 ksp = "2.0.20-1.0.25"
 kotlin = "2.0.20"
 kotlinxCoroutines = "1.9.0"
@@ -9,9 +8,9 @@ archCoreTesting = "2.2.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.5"
+lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
-composeBom = "2024.04.01"
+composeBom = "2024.09.03"
 retrofit = "2.11.0"
 okhttp3LoggingInterceptor = "5.0.0-alpha.11"
 turbine = "1.1.0"
@@ -23,7 +22,6 @@ hilt = "2.52"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "archCoreTesting" }
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
