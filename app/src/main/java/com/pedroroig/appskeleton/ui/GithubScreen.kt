@@ -24,15 +24,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pedroroig.appskeleton.domain.mockReposSeveral
 import com.pedroroig.appskeleton.domain.model.GithubRepo
 
 @Composable
-fun GithubScreen(
+fun GithubScreen(viewModel: GithubViewModel = hiltViewModel()) {
+    val uiModel by viewModel.uiState.collectAsStateWithLifecycle()
+    GithubScreenContent(
+        uiModel,
+        viewModel::fetchUserRepositories,
+    )
+}
+
+@Composable
+private fun GithubScreenContent(
     uiModel: UiModel,
-    modifier: Modifier = Modifier
+    searchAction: (String) -> Unit,
 ) {
-    Box(modifier = modifier) {
+    Box {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -46,7 +57,7 @@ fun GithubScreen(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = {
-                uiModel.searchAction(username)
+                searchAction(username)
             }) {
                 Text("Fetch Repositories")
             }
@@ -92,36 +103,36 @@ fun GithubRepoItem(repo: GithubRepo) {
 @Preview(showBackground = true)
 @Composable
 fun GithubScreenPopulatedPreview() {
-    GithubScreen(
+    GithubScreenContent(
         UiModel(
             mockReposSeveral(),
             false,
-            emptyLambda(),
         ),
+        emptyLambda(),
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GithubScreenEmptyPreview() {
-    GithubScreen(
+    GithubScreenContent(
         UiModel(
             emptyList(),
             false,
-            emptyLambda(),
         ),
+        emptyLambda(),
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GithubScreenLoadingPreview() {
-    GithubScreen(
+    GithubScreenContent(
         UiModel(
             emptyList(),
             true,
-            emptyLambda(),
         ),
+        emptyLambda(),
     )
 }
 
