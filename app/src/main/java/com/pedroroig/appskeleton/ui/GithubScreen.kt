@@ -35,6 +35,7 @@ fun GithubScreen(viewModel: GithubViewModel = hiltViewModel()) {
     GithubScreenContent(
         uiModel,
         viewModel::fetchUserRepositories,
+        viewModel::onDismissError,
     )
 }
 
@@ -42,41 +43,54 @@ fun GithubScreen(viewModel: GithubViewModel = hiltViewModel()) {
 private fun GithubScreenContent(
     uiModel: UiModel,
     searchAction: (String) -> Unit,
+    onDismissError: () -> Unit,
 ) {
     Box {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            var username by remember { mutableStateOf("") }
-            TextField(
-                value = username,
-                onValueChange = { username = it },
-                label = { Text("GitHub Username") }
+        RepoList(uiModel, searchAction)
+        if (uiModel.error != null) {
+            ErrorDialog(
+                "There was an error fetching the repositories",
+                "Ok",
+                onConfirm = { onDismissError() },
+                onDismiss = { onDismissError() },
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = {
-                searchAction(username)
-            }) {
-                Text("Fetch Repositories")
-            }
-            Spacer(modifier = Modifier.height(8.dp))
-            if (uiModel.isLoading) {
-                LoadingScreen()
-            } else {
-                LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                    items(uiModel.repos) { repo ->
-                        GithubRepoItem(repo)
-                    }
-                }
+        }
+        if (uiModel.isLoading) {
+            LoadingScreen()
+        }
+    }
+}
+
+@Composable
+private fun RepoList(uiModel: UiModel, searchAction: (String) -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        var username by remember { mutableStateOf("") }
+        TextField(
+            value = username,
+            onValueChange = { username = it },
+            label = { Text("GitHub Username") }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(onClick = {
+            searchAction(username)
+        }) {
+            Text("Fetch Repositories")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            items(uiModel.repos) { repo ->
+                GithubRepoItem(repo)
             }
         }
     }
 }
 
 @Composable
-fun GithubRepoItem(repo: GithubRepo) {
+private fun GithubRepoItem(repo: GithubRepo) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -102,38 +116,43 @@ fun GithubRepoItem(repo: GithubRepo) {
 
 @Preview(showBackground = true)
 @Composable
-fun GithubScreenPopulatedPreview() {
+private fun GithubScreenPopulatedPreview() {
     GithubScreenContent(
         UiModel(
             mockReposSeveral(),
             false,
         ),
+        emptyLambdaString(),
         emptyLambda(),
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GithubScreenEmptyPreview() {
+private fun GithubScreenEmptyPreview() {
     GithubScreenContent(
         UiModel(
             emptyList(),
             false,
         ),
+        emptyLambdaString(),
         emptyLambda(),
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GithubScreenLoadingPreview() {
+private fun GithubScreenLoadingPreview() {
     GithubScreenContent(
         UiModel(
             emptyList(),
             true,
         ),
+        emptyLambdaString(),
         emptyLambda(),
     )
 }
 
-private fun emptyLambda(): (String) -> Unit = {}
+private fun emptyLambdaString(): (String) -> Unit = {}
+
+private fun emptyLambda(): () -> Unit = {}

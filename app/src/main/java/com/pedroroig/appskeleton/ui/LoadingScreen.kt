@@ -18,14 +18,14 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize(),
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier.size(48.dp)
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun LoadingScreenPreview() {
+private fun LoadingScreenPreview() {
     AppSkeletonTheme {
         LoadingScreen()
     }
