@@ -1,4 +1,4 @@
-package com.pedroroig.appskeleton.ui
+package com.pedroroig.appskeleton.ui.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

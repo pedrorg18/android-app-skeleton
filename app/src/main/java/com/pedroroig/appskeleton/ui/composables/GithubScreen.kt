@@ -1,4 +1,4 @@
-package com.pedroroig.appskeleton.ui
+package com.pedroroig.appskeleton.ui.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,6 +28,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pedroroig.appskeleton.domain.mockReposSeveral
 import com.pedroroig.appskeleton.domain.model.GithubRepo
+import com.pedroroig.appskeleton.ui.GithubViewModel
+import com.pedroroig.appskeleton.ui.UiModel
 
 @Composable
 fun GithubScreen(viewModel: GithubViewModel = hiltViewModel()) {
