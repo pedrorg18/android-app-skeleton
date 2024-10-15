@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flow
 
-class TestGithubRepository : GithubRepository {
+class FakeGithubRepository : GithubRepository {
 
     var fail = false
     private var flow = MutableSharedFlow<List<GithubRepo>>()

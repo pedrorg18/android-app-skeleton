@@ -2,7 +2,7 @@ package com.pedroroig.appskeleton.ui
 
 import com.pedroroig.appskeleton.domain.mockReposSeveral
 import com.pedroroig.appskeleton.domain.model.GithubRepo
-import com.pedroroig.appskeleton.test.TestGithubRepository
+import com.pedroroig.appskeleton.test.FakeGithubRepository
 import com.pedroroig.appskeleton.utils.MainDispatcherRule
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,7 +16,7 @@ import org.junit.Test
 class GithubViewModelTest {
 
     private lateinit var viewModel: GithubViewModel
-    private var repository: TestGithubRepository = TestGithubRepository()
+    private var repository: FakeGithubRepository = FakeGithubRepository()
     // So the main dispatcher tasks are run immediately, instead of being queued
     private val mainDispatcher = UnconfinedTestDispatcher()
 
